@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TravelApp"
 include(":app")
- 
+include(":feature:authentication")
+include(":core:ui")

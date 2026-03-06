@@ -1,28 +1,22 @@
 plugins {
-    alias(libs.plugins.android.application)
-
-    // Hilt
-    alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
-
-    // Compose
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+
+    // Serialization
+    alias(libs.plugins.serialization)
 }
 
 android {
-    namespace = "com.mahshad.travelapp"
+    namespace = "com.mahshad.authentication"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.mahshad.travelapp"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,17 +38,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:authentication"))
-
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    // Hilt Core
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    // Hilt Navigation
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))
@@ -72,8 +58,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
