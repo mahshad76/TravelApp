@@ -16,7 +16,7 @@ data object AuthNavGraphRoute
 
 fun NavGraphBuilder.authNavGraph(onSignInClicked: () -> Unit, onSignUpClicked: () -> Unit) {
     navigation<AuthNavGraphRoute>(
-        startDestination = WelcomeScreenRoute::class
+        startDestination = LogInScreenRoute::class
     ) {
         composable<WelcomeScreenRoute> {
             WelcomeScreen()
