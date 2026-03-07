@@ -1,5 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.ksp)
+
+    // Hilt
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -31,6 +35,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
+    implementation(project(":core:database"))
+
+    // Hilt Core
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // Hilt Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

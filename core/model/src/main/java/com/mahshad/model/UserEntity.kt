@@ -19,3 +19,7 @@ data class UserEntity(
         )
     }
 }
+
+fun UserEntity.toUser(): User = User(
+    this.email, this.password
+)
