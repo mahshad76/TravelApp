@@ -1,9 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 
     // Serialization
     alias(libs.plugins.serialization)
+
+    // Hilt
+    alias(libs.plugins.hilt.android)
+
 }
 
 android {
@@ -38,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:data"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -57,6 +64,13 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // Hilt Core
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // Hilt Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

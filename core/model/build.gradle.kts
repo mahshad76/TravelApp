@@ -36,7 +36,7 @@ dependencies {
     implementation(libs.material)
 
     // Room runtime
-    implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.room.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

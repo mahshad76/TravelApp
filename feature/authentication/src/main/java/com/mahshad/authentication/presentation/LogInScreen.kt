@@ -25,11 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mahshad.authentication.R
 import kotlinx.serialization.Serializable
 
@@ -37,7 +37,10 @@ import kotlinx.serialization.Serializable
 data object LogInScreenRoute
 
 @Composable
-fun LogInScreen() {
+fun LogInScreen(viewModel: LogInScreenViewModel = hiltViewModel()) {
+    val email = viewModel.emailStateFlow.collectAsStateWithLifecycle()
+    val password = viewModel.passwordStateFlow.collectAsStateWithLifecycle()
+
     Column(
         modifier = Modifier
             .padding(top = 16.dp, start = 16.dp, end = 16.dp)
@@ -61,22 +64,19 @@ fun LogInScreen() {
         Spacer(modifier = Modifier.height(94.dp))
         OutlinedTextField(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            value = "",
-            onValueChange = {},
-            label = { Text(modifier = Modifier.fillMaxHeight(), text = "Email") },
+                .fillMaxWidth(),
+            value = email.value,
+            onValueChange = { viewModel.updateEmailStateFlow(it) },
+            label = { Text(modifier = Modifier, text = "Email") },
             leadingIcon = { Icon(Icons.Default.Email, contentDescription = "email icon") },
-            textStyle = TextStyle(textAlign = TextAlign.Center),
             singleLine = true
         )
         Spacer(Modifier.height(16.dp))
         OutlinedTextField(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            value = "",
-            onValueChange = {},
+                .fillMaxWidth(),
+            value = password.value,
+            onValueChange = { viewModel.updatePasswordStateFlow(it) },
             label = { Text("Password") },
             leadingIcon = { Icon(Icons.Default.Password, contentDescription = "password icon") },
             singleLine = true

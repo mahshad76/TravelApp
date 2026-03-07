@@ -36,19 +36,19 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
     // Room runtime
-    implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.room.runtime)
 
     // Kotlin extensions and Coroutines support
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.ktx)
 
     // Annotation processor
-    ksp("androidx.room:room-compiler:2.6.1")
+    ksp(libs.androidx.room.compiler)
 
     // Hilt Core
     implementation(libs.hilt.android)
