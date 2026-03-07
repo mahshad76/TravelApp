@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.ksp)
+
+    // Hilt
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -44,6 +47,13 @@ dependencies {
 
     // Annotation processor
     ksp("androidx.room:room-compiler:2.6.1")
+
+    // Hilt Core
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // Hilt Navigation
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

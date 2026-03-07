@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.ksp)
 
     // Hilt
     alias(libs.plugins.hilt.android)
-    alias(libs.plugins.ksp)
 
     // Compose
     alias(libs.plugins.kotlin.compose)
