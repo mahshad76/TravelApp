@@ -1,13 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.ksp)
-
-    // Hilt
-    alias(libs.plugins.hilt.android)
 }
 
 android {
-    namespace = "com.mahshad.database"
+    namespace = "com.mahshad.model"
     compileSdk {
         version = release(36)
     }
@@ -35,27 +31,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
     // Room runtime
     implementation("androidx.room:room-runtime:2.6.1")
-
-    // Kotlin extensions and Coroutines support
-    implementation("androidx.room:room-ktx:2.6.1")
-
-    // Annotation processor
-    ksp("androidx.room:room-compiler:2.6.1")
-
-    // Hilt Core
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    // Hilt Navigation
-    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
