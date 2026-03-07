@@ -7,15 +7,15 @@ import com.mahshad.database.UserDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object DatabaseModule {
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideUserDatabase(@ApplicationContext context: Context): UserDataBase =
         Room.databaseBuilder(
             context,
@@ -24,6 +24,6 @@ object DatabaseModule {
         ).build()
 
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideUserDao(userDataBase: UserDataBase): UserDao = userDataBase.userDao()
 }
