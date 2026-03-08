@@ -2,6 +2,7 @@ package com.mahshad.data
 
 import com.mahshad.database.UserDao
 import com.mahshad.model.User
+import com.mahshad.model.UserEntity
 import com.mahshad.model.toUser
 import com.mahshad.model.toUserEntity
 import kotlinx.coroutines.flow.Flow
@@ -14,5 +15,11 @@ class UserRepositoryImpl @Inject constructor(private val userDao: UserDao) : Use
 
     override suspend fun deleteUser(email: String) = userDao.deleteUser(email)
 
-    override fun getUsers(): Flow<List<User>> = userDao.getUsers().map { it.map { it.toUser() } }
+    override fun getUsers(): Flow<Result<List<User>>> = userDao.getUsers()
+        .map { result: Result<List<UserEntity>> ->
+            result
+                .map { listOfUserEntities ->
+                    listOfUserEntities.map { it.toUser() }
+                }
+        }
 }
