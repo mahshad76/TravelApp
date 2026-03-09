@@ -1,6 +1,6 @@
 package com.mahshad.model.dto
 
-data class CountryResponseDtoItem(
+data class CountryDto(
     val altSpellings: List<String>,
     val area: Double,
     val borders: List<String>,
