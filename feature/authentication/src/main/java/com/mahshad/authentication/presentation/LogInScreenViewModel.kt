@@ -16,7 +16,6 @@ class LogInScreenViewModel @Inject constructor(private val userRepository: UserR
     private val _emailStateFlow = MutableStateFlow<String>("")
     val emailStateFlow = _emailStateFlow.asStateFlow()
 
-
     private val _passwordStateFlow = MutableStateFlow<String>("")
     val passwordStateFlow = _passwordStateFlow.asStateFlow()
 
